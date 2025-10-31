@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modular House Configurator</title>
+
+    <!-- Babylon.js CDN -->
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css" />
+
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="header-block">
+            <div class="title">Modular House Configurator</div>
+            <div class="subtitle">
+                Width is fixed at 6 m. Choose length and height type.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Plan</div>
+            <div class="field-group">
+                <div class="field-row">
+                    <label class="label" for="lengthSelect">Length (m)</label>
+                    <select id="lengthSelect">
+                        <option value="9">9 m</option>
+                        <option value="12" selected>12 m</option>
+                        <option value="15">15 m</option>
+                        <option value="18">18 m</option>
+                    </select>
+                </div>
+
+                <div class="field-row">
+                    <div class="label">Height / floors</div>
+                    <div class="radio-row">
+                        <label class="radio-option">
+                            <input type="radio" name="floors" value="1" checked />
+                            <span>
+                                Single floor + roof<br />
+                                <small>Base wall 2.58 m + roof</small>
+                            </span>
+                        </label>
+                    </div>
+                    <div class="radio-row">
+                        <label class="radio-option">
+                            <input type="radio" name="floors" value="2" />
+                            <span>
+                                Two-floor volume + roof<br />
+                                <small>Extra 1.24 m vertical wall before roof</small>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <button class="apply-btn" id="applyBtn">Apply</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Summary</div>
+
+            <div class="stats-card">
+                <div class="stats-label">Width</div>
+                <div id="statWidth">6 m</div>
+
+                <div class="stats-label">Length</div>
+                <div id="statLength">12 m</div>
+
+                <div class="stats-label">Usable floors</div>
+                <div id="statFloors">1</div>
+
+                <div class="stats-label">Total floor area</div>
+                <div><span id="statArea">72</span> m²</div>
+            </div>
+
+            <div class="footer-note">
+                For 2-floor option the floor area is counted twice.
+            </div>
+        </div>
+    </aside>
+
+    <main class="viewer">
+        <canvas id="renderCanvas"></canvas>
+        <div class="watermark">Preview • Babylon.js</div>
+    </main>
+    
+    <!-- Scripts -->
+    <script src="js/scene.js"></script>
+    <script src="js/prefabs.js"></script>
+    <script src="js/house.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
