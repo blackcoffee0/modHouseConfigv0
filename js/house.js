@@ -131,6 +131,7 @@ let deck1Mesh = null;
 let upperWindow1Mesh = null;
 let upperWindow2Mesh = null;
 let upperWindow3Mesh = null;
+let extraWindows = [];
 
 function buildHouse(config) {
     const depth = config.depthMeters;
@@ -190,6 +191,10 @@ function buildHouse(config) {
     if (upperWindow3Mesh) {
         upperWindow3Mesh.dispose();
         upperWindow3Mesh = null;
+    }
+    if (extraWindows && extraWindows.length) {
+        extraWindows.forEach(m => { if (m) { m.dispose(); } });
+        extraWindows = [];
     }
 
     // main house volume
@@ -284,7 +289,42 @@ function buildHouse(config) {
         upperWindow3Mesh.position.z = (depth / 2);
         upperWindow3Mesh.rotation.y = Math.PI / 2;
     }
+    // --- add extra windows depending on house length (depth) ---
+    // rules from user:
+    // 9m - no changes
+    // 12m - add one normal window (like kitchen) on garden side
+    // 15m - 2 windows on garden side and 1 on front
+    // 18m - 3 windows on garden and 2 on front
+    const extraGardenZs = [];
+    const extraFrontZs = [];
+    if (depth === 12) {
+        extraGardenZs.push(depth / 2 - 2.75); // center on garden side
+    } else if (depth === 15) {
+        extraGardenZs.push(depth / 2 - 2.75, depth / 2 - 2.75 - 5); // two spaced on garden side
+        extraFrontZs.push(depth / 2 - 2.75); // one on front
+    } else if (depth === 18) {
+        extraGardenZs.push(depth / 2 - 2.75, depth / 2 - 2.75 - 5); // three on garden side
+        extraFrontZs.push(depth / 2 - 2.75, depth / 2 - 2.75 - 5); // two on front
+    }
+    // create garden-side windows (x = positive side)
+    extraGardenZs.forEach((zVal, idx) => {
+        const w = createWindowPrefab(1.5, 1.0).clone("extraGardenWin_" + idx);
+        w.position.x = WIDTH_FIXED / 2 + 0.05;
+        w.position.y = 1.5;
+        w.position.z = zVal;
+        w.rotation.y = Math.PI;
+        extraWindows.push(w);
+    });
 
+    // create front-side windows (x = negative/front side)
+    extraFrontZs.forEach((zVal, idx) => {
+        const w = createWindowPrefab(1.5, 1.0).clone("extraFrontWin_" + idx);
+        w.position.x = -WIDTH_FIXED / 2 - 0.05;
+        w.position.y = 1.5;
+        w.position.z = zVal;
+        w.rotation.y = 0;
+        extraWindows.push(w);
+    });
     const peak = wallHeight + ROOF_HEIGHT;
     camera.setTarget(new BABYLON.Vector3(0, peak * 0.55, 0));
 }

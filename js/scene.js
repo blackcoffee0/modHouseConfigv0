@@ -38,8 +38,8 @@ hemiLight.intensity = 0.9;
 // directional light (sun)
 
 const dirLight = new BABYLON.DirectionalLight(
-  "dirLight",
-  new BABYLON.Vector3(-1, -2, -1),
+    "dirLight",
+    new BABYLON.Vector3(-1, -2, -1),
     scene
 );
 dirLight.position = new BABYLON.Vector3(20, 40, 20);
@@ -48,8 +48,8 @@ dirLight.shadowMinZ = 1;
 dirLight.shadowMaxZ = 250;
 
 const dirLight2 = new BABYLON.DirectionalLight(
-  "dirLight",
-  new BABYLON.Vector3(1, 2, 1),
+    "dirLight",
+    new BABYLON.Vector3(1, 2, 1),
     scene
 );
 dirLight2.position = new BABYLON.Vector3(-20, 40, -20);
