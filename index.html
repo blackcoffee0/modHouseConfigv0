@@ -14,7 +14,13 @@
 </head>
 
 <body>
-    <aside class="sidebar">
+    <!-- Mobile toggle button -->
+    <button class="panel-toggle" id="panelToggle" aria-label="Open configuration panel">☰</button>
+
+    <aside class="sidebar" id="sidebar">
+        <!-- Close button (mobile only) -->
+        <button class="panel-close" id="panelClose" aria-label="Close configuration panel">✕</button>
+
         <div class="header-block">
             <div class="title">Modular House Configurator</div>
             <div class="subtitle">
@@ -93,6 +99,7 @@
     <script src="js/scene.js"></script>
     <script src="js/prefabs.js"></script>
     <script src="js/house.js"></script>
+    <script src="js/mobile.js"></script>
     <script src="js/app.js"></script>
 
 </body>

@@ -80,3 +80,8 @@ engine.runRenderLoop(() => {
 window.addEventListener("resize", () => {
     engine.resize();
 });
+
+// Resize on orientation change (mobile)
+window.addEventListener("orientationchange", () => {
+    setTimeout(() => engine.resize(), 100);
+});
