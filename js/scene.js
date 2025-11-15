@@ -22,7 +22,7 @@ camera.attachControl(canvas, true);
 // camera limits
 camera.lowerBetaLimit = 0.4;
 camera.upperBetaLimit = 1.5;
-camera.lowerRadiusLimit = 6;
+camera.lowerRadiusLimit = 10;
 camera.upperRadiusLimit = 30;
 camera.panningSensibility = 0;
 camera.wheelDeltaPercentage = 0.02;

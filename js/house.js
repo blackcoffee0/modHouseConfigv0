@@ -72,56 +72,6 @@ function createRoofGables(width, depth, wallHeight, roofHeight, scene, mat) {
     return mesh;
 }
 
-/*    // Full roof prefab (triangular prism shape)
-    function createRoof(width, depth, wallHeight, roofHeight) {
-      const ridgeY = wallHeight + roofHeight;
- 
-      // 6 vertices of triangular prism roof
-      const positions = [
-        -width/2, wallHeight,  depth/2,   // 0 front left eave
-         0,       ridgeY,      depth/2,   // 1 front ridge
-         width/2, wallHeight,  depth/2,   // 2 front right eave
- 
-        -width/2, wallHeight, -depth/2,   // 3 back left eave
-         0,       ridgeY,     -depth/2,   // 4 back ridge
-         width/2, wallHeight, -depth/2    // 5 back right eave
-      ];
- 
-      const indices = [
-        // front triangle
-        0,1,2,
-        // back triangle
-        5,4,3,
-        // left roof face
-        0,3,4,
-        0,4,1,
-        // right roof face
-        2,1,4,
-        2,4,5,
-        // underside
-        0,2,5,
-        0,5,3
-      ];
- 
-      const mesh = new BABYLON.Mesh("roof", scene);
-      const vData = new BABYLON.VertexData();
-      vData.positions = positions;
-      vData.indices = indices;
- 
-      // Let Babylon's default normal handling shade it in-engine.
-      // (We intentionally do NOT set vData.normals or vData.uvs to stay close
-      //  to how you said it "looks best".)
-      vData.applyToMesh(mesh);
- 
-      // roof material (dark roof color)
-      const roofMat = new BABYLON.StandardMaterial("roofMat", scene);
-      roofMat.diffuseColor = BABYLON.Color3.FromHexString("#4a4a4a");
-      roofMat.specularColor = new BABYLON.Color3(0,0,0);
-      mesh.material = roofMat;
- 
-      return mesh;
-    }
-*/
 let doorMesh = null;
 let kitchenWinMesh = null;
 let gardenDoor1Mesh = null;
